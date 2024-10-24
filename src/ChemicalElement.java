@@ -14,7 +14,7 @@ abstract class ChemicalElement {
     }
 
     public double getMinDigitOfFrame() {
-        return maxDigitOfFrame;
+        return minDigitOfFrame;
     }
 
     public void setMinDigitOfFrame(double minDigitOfFrame) {

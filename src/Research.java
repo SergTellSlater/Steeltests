@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Scanner;
 
 class Research {
@@ -86,18 +88,20 @@ class Research {
             }
         }
         differenceArray = maxArray - minArray;
-        System.out.println("Вычисленное значение разницы максимального и минимального значения обжогов: " + differenceArray);
+        BigDecimal roundedNumber = new BigDecimal(differenceArray).setScale(4, RoundingMode.HALF_UP);
+        differenceArray = roundedNumber.doubleValue();
+        System.out.println("Вычисленное значение дельты (разницы максимального и минимального значения обжогов): " + differenceArray);
         if(differenceArray <= standardElement.getDifference() && differenceArray >= 0){
             System.out.println("Значения в диапазоне сравнения. Всё хорошо!");
         } else if (differenceArray > standardElement.getDifference()){
             System.out.println("Значения не в диапазоне сравнения. Увы, не проходит!");
         } else if(differenceArray < 0){
-            System.out.println("Вы ввели бред");
+            System.out.println("Вы допустили ошибку при вводе");
         }
     }
     public void printFramesValue(ChemicalElement standardElement){
         System.out.println("Для элемента " + standardElement.getName() + " установлено значение максимумального значения " + standardElement.getMaxDigitOfFrame());
-        System.out.println("Для элемента " + standardElement.getName() + " установлено значение максимумального значения " + standardElement.getMinDigitOfFrame());
+        System.out.println("Для элемента " + standardElement.getName() + " установлено значение минимального значения " + standardElement.getMinDigitOfFrame());
         System.out.println("Для элемента " + standardElement.getName() + " установлено значение дельты " + standardElement.getDifference());
     }
 }
